@@ -1,2 +1,2 @@
-# ToyProject SmartStore
-수정 중입니다...
+
+자바 토이프로젝트 스마트스토어 고객 분류
