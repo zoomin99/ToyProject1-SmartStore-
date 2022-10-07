@@ -1,1 +1,2 @@
-# KDT3_Java_ToyProject_SmartStore
+# ToyProject SmartStore
+수정 중입니다...
