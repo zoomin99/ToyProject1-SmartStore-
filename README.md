@@ -10,16 +10,12 @@
 - 파일 이름 작성법
     - ````me.smartstore.project```` 패키지 생성
     - 도메인별로 패키지를 나눠서 관련 클래스끼리 함께 패키지화
-    <details>
-        <summary>예시</summary>
-
-    - ```me.smartstore.project.customer``` 패키지
-      - ```Customer```, ```Customers```
-    - ```me.smartstore.project.parameter``` 패키지
-      - ```Parameter```, ```Parameters```, ```Group (Enum형)```
-
-    </details>
-
+      - 예시
+        - ```me.smartstore.project.customer``` 패키지
+          - ```Customer```, ```Customers```
+        - ```me.smartstore.project.parameter``` 패키지
+          - ```Parameter```, ```Parameters```, ```Group (Enum형)```
+      
           
       
 - 제출방법
