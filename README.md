@@ -13,8 +13,8 @@
       - 예시
         - ```me.smartstore.project.customer``` 패키지
           - ```Customer```, ```Customers```
-        - ```me.smartstore.project.parameter``` 패키지
-          - ```Parameter```, ```Parameters```, ```Group (Enum형)```
+        - ```me.smartstore.project.group``` 패키지
+          - ```Group```, ```Groups```, ```GroupType (Enum형)```
       
           
       
