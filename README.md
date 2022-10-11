@@ -14,7 +14,9 @@
         - ```me.smartstore.project.customer``` 패키지
           - ```Customer```, ```Customers```
         - ```me.smartstore.project.group``` 패키지
-          - ```Group```, ```Groups```, ```GroupType (Enum형)```
+          - ```Group```, ```Groups```, ```Parameter```, ```GroupType (Enum형)```
+        - ```me.smartstore.project.menu``` 패키지
+          - ```Menu```, ```CustomerMenu```, ```GroupMenu```, ```SummaryMenu```, ```OrderType (Enum형)```
       
           
       
