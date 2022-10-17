@@ -1,7 +1,5 @@
 package me.smartstore.project.menu;
 
-import me.smartstore.project.customers.Customer;
-
 import static me.smartstore.project.Main.scan;
 
 public class CustomerMenu {
@@ -42,41 +40,44 @@ public class CustomerMenu {
 
     public int choiceMenu(int num) {
         System.out.println();
-        switch (num) {
-            case 1:
-                addCustomerData();
-                break;
+        if (num >= 1 && num <= 4) {
+            switch (num) {
+                case 1:
+                    addCustomerData();
+                    break;
 
-            case 2:
-                SmartStoreApplication.allCustomers.displayCustomersInfo();
-                break;
+                case 2:
+                    SmartStoreApplication.allCustomers.displayCustomersInfo();
+                    break;
 
-            case 3:
-                updateCustomerData();
-                break;
+                case 3:
+                    updateCustomerData();
+                    break;
 
-            case 4:
-                deleteCustomerData();
-                break;
+                case 4:
+                    deleteCustomerData();
+                    break;
 
-            case 6:
-                SmartStoreApplication.allCustomers.addTesters();
+                case 6:
+                    SmartStoreApplication.allCustomers.addTesters();
+            }
         }
+        else
+            System.out.println("Wrong number");
         return num;
     }
 
     private void addCustomerData() {
-        String name, UserID;
-        int purchaseCount, totalPay;
+        String name, UserID, purchaseCount, totalPay;
 
         System.out.println("Input customer's Name");
         name = scan.next();
         System.out.println("Input customer's User ID");
         UserID = scan.next();
         System.out.println("Input customer's Purchase Count");
-        purchaseCount = scan.nextInt();
+        purchaseCount = scan.next();
         System.out.println("Input customer's Total Pay");
-        totalPay = scan.nextInt();
+        totalPay = scan.next();
 
         SmartStoreApplication.allCustomers.addCustomer(name, UserID, purchaseCount, totalPay);
     }

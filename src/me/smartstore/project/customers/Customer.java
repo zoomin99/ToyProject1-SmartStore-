@@ -13,36 +13,25 @@ public class Customer {
 
     private Group group = new Group();
 
-    public Customer(String name, String userID, int purchaseCount, int totalPay) {
+    public Customer(String name, String userID, String purchaseCount, String totalPay) {
         serialNoGenerator++;
         this.serialNO = String.format("%05d", serialNoGenerator);
-        try{
+        try {
             setName(name);
-        }
-        catch (InputEmptyException e) {
+            setUserID(userID);
+            setPurchaseCount(purchaseCount);
+            setTotalPay(totalPay);
+        } catch (InputEmptyException e) {
+            System.out.println(e.getMessage());
+        } catch (InputFormatException e) {
             System.out.println(e.getMessage());
         }
-        catch (InputFormatException e){
-            System.out.println(e.getMessage());
-        }
-        this.userID = userID;
-        this.purchaseCount = purchaseCount;
-        this.totalPay = totalPay;
-        group.setGroupType(purchaseCount, totalPay);
+        group.setGroupType(this.purchaseCount, this.totalPay);
     }
 
     public Customer(Customer customer) {
         this.serialNO = customer.serialNO;
-        try{
-            setName(customer.name);
-        }
-        catch (InputEmptyException e) {
-            System.out.println(e.getMessage());
-        }
-        catch (InputFormatException e){
-            System.out.println(e.getMessage());
-        }
-
+        this.name = customer.name;
         this.userID = customer.userID;
         this.purchaseCount = customer.purchaseCount;
         this.totalPay = customer.totalPay;
@@ -53,10 +42,6 @@ public class Customer {
         return serialNO;
     }
 
-    public void setSerialNO(String serialNO) {
-        this.serialNO = serialNO;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,7 +50,7 @@ public class Customer {
         if (name == null)
             throw new InputEmptyException("Name must not be null");
 
-        if(!(name.matches("^[a-zA-Z]{3,}$")))
+        if (!(name.matches("^[a-zA-Z]{3,}$")))
             throw new InputFormatException("Name must be more than 3 letters and alphabets only");
         else
             this.name = name;
@@ -75,7 +60,12 @@ public class Customer {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(String userID) throws InputEmptyException, InputFormatException {
+        if (userID == null)
+            throw new InputEmptyException("User ID must not be null");
+
+        if (!(userID.matches("^[a-zA-Z][a-zA-Z0-9_]{4,11}$")))
+            throw new InputFormatException("User ID format error");
         this.userID = userID;
     }
 
@@ -83,16 +73,24 @@ public class Customer {
         return purchaseCount;
     }
 
-    public void setPurchaseCount(int purchaseCount) {
-        this.purchaseCount = purchaseCount;
+    public void setPurchaseCount(String purchaseCount) throws InputFormatException {
+        if (!(purchaseCount.matches("^[1-9][0-9]*|0$"))) {
+            this.purchaseCount = -1;
+            throw new InputFormatException("Purchase Count format error");
+        } else
+            this.purchaseCount = Integer.parseInt(purchaseCount);
     }
 
     public int getTotalPay() {
         return totalPay;
     }
 
-    public void setTotalPay(int totalPay) {
-        this.totalPay = totalPay;
+    public void setTotalPay(String totalPay) throws InputFormatException {
+        if (!(totalPay.matches("^[1-9][0-9]*|0$"))) {
+            this.totalPay = -1;
+            throw new InputFormatException("Total Payment format error");
+        } else
+            this.totalPay = Integer.parseInt(totalPay);
     }
 
     public Group getGroup() {

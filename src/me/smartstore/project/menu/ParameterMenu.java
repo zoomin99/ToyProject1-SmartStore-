@@ -41,15 +41,18 @@ public class ParameterMenu {
 
 
     public int choiceMenu(int num) {
-        switch (num) {
-            case 1:
-                updateParameter();
-                break;
+        if (num >= 1 && num <= 2) {
+            switch (num) {
+                case 1:
+                    updateParameter();
+                    break;
 
-            case 2:
-                viewParameter();
-                break;
-        }
+                case 2:
+                    viewParameter();
+                    break;
+            }
+        } else
+            System.out.println("Wrong number");
         return num;
     }
 
@@ -70,6 +73,8 @@ public class ParameterMenu {
             parameter.setVVIPMinPurchaseCount(purchaseCount);
             parameter.setVVIPMinTotalPay(totalPay);
         }
+        else
+            System.out.println("Choose VIP or VVIP");
     }
 
     private void viewParameter() {

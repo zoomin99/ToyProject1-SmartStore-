@@ -44,27 +44,31 @@ public class Menu {
 
     private int choiceMenu(int num) {
         //1번이면 parameter, 2번이면 customer, 3번이면 summary 실행
-        switch (num) {
-            case 1:
-                for (; ; ) {
-                    if (parameterMenu.run())
-                        break;
-                }
-                break;
+        if (num >= 1 && num <= 3) {
+            switch (num) {
+                case 1:
+                    for (; ; ) {
+                        if (parameterMenu.run())
+                            break;
+                    }
+                    break;
 
-            case 2:
-                for (; ; ) {
-                    if (customerMenu.run())
-                        break;
-                }
-                break;
+                case 2:
+                    for (; ; ) {
+                        if (customerMenu.run())
+                            break;
+                    }
+                    break;
 
-            case 3:
-                for (; ; ) {
-                    if (summaryMenu.run())
-                        break;
-                }
+                case 3:
+                    for (; ; ) {
+                        if (summaryMenu.run())
+                            break;
+                    }
+            }
         }
+        else
+            System.out.println("Wrong number");
         return num;
     }
 }

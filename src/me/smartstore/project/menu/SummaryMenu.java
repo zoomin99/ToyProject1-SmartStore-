@@ -12,14 +12,16 @@ import static me.smartstore.project.Main.scan;
 public class SummaryMenu {
     private static SummaryMenu summaryMenu = new SummaryMenu();
 
-    private SummaryMenu(){}
+    private SummaryMenu() {
+    }
 
-    public static SummaryMenu getInstance(){
-        if(summaryMenu==null)
-            summaryMenu=new SummaryMenu();
+    public static SummaryMenu getInstance() {
+        if (summaryMenu == null)
+            summaryMenu = new SummaryMenu();
 
         return summaryMenu;
     }
+
     public boolean run() {
         displayMenu();
         if (choiceMenu(scan.nextInt()) == 4)
@@ -42,33 +44,34 @@ public class SummaryMenu {
 
     public int choiceMenu(int num) {
         ClassifiedCustomers classifiedCustomers = new ClassifiedCustomers(SmartStoreApplication.getAllCustomers());
-        switch (num) {
-            case 1:
-                summaryByName(classifiedCustomers);
-                break;
+        if (num >= 1 && num <= 3) {
+            switch (num) {
+                case 1:
+                    summaryByName(classifiedCustomers);
+                    break;
 
-            case 2:
-                summaryByPurchaseCount(classifiedCustomers);
-                break;
+                case 2:
+                    summaryByPurchaseCount(classifiedCustomers);
+                    break;
 
-            case 3:
-                summaryByTotalPay(classifiedCustomers);
-                break;
-
-
-
+                case 3:
+                    summaryByTotalPay(classifiedCustomers);
+                    break;
+            }
         }
+        System.out.println("Wrong number");
         return num;
     }
 
-    public String choiceOrderType(){
+    public String choiceOrderType() {
         System.out.print("Which order (ASCENDING, DESCENDING)? ");
         String str = scan.next();
         str = str.toUpperCase();
 
         return str;
     }
-    public void summaryByName(ClassifiedCustomers classifiedCustomers){
+
+    public void summaryByName(ClassifiedCustomers classifiedCustomers) {
         String str = choiceOrderType();
 
         for (Customers customers : classifiedCustomers.getClassifiedCustomers()) {
@@ -88,7 +91,7 @@ public class SummaryMenu {
         classifiedCustomers.displayCustomersInfo();
     }
 
-    public void summaryByPurchaseCount(ClassifiedCustomers classifiedCustomers){
+    public void summaryByPurchaseCount(ClassifiedCustomers classifiedCustomers) {
         String str = choiceOrderType();
 
         for (Customers customers : classifiedCustomers.getClassifiedCustomers()) {
@@ -108,7 +111,7 @@ public class SummaryMenu {
         classifiedCustomers.displayCustomersInfo();
     }
 
-    public void summaryByTotalPay(ClassifiedCustomers classifiedCustomers){
+    public void summaryByTotalPay(ClassifiedCustomers classifiedCustomers) {
         String str = choiceOrderType();
 
         for (Customers customers : classifiedCustomers.getClassifiedCustomers()) {

@@ -23,7 +23,7 @@ public class Customers {
         return customerCount;
     }
 
-    public void addCustomer(String name, String userID, int purchaseCount, int totalPay) {
+    public void addCustomer(String name, String userID, String purchaseCount, String totalPay) {
         Customer temp = new Customer(name, userID, purchaseCount, totalPay);
         if (temp.getName() != null && temp.getUserID() != null && temp.getPurchaseCount() >= 0 && temp.getTotalPay() >= 0) {
             if (customerCount >= customers.length) {
@@ -54,16 +54,16 @@ public class Customers {
     }
 
     public void addTesters() {
-        addCustomer("Doo", "jjwm", 17, 17000);
-        addCustomer("Boo", "jjwm", 6, 6000);
-        addCustomer("Aoo", "jjwm", 39, 39000);
-        addCustomer("Coo", "jjwm", 3, 3000);
-        addCustomer("Koo", "jjwm", 8, 8000);
-        addCustomer("Ioo", "jjwm", 16, 16000);
-        addCustomer("Loo", "jjwm", 23, 23000);
-        addCustomer("Joo", "jjwm", 15, 15000);
-        addCustomer("Boo", "jjwm", 20, 20000);
-        addCustomer("Qoo", "jjwm", 12, 12000);
+        addCustomer("Doo", "jjwmm", "17", "17000");
+        addCustomer("Boo", "jjwmm", "6", "6000");
+        addCustomer("Aoo", "jjwmm", "39", "39000");
+        addCustomer("Coo", "jjwmm", "3", "3000");
+        addCustomer("Koo", "jjwmm", "8", "8000");
+        addCustomer("Ioo", "jjwmm", "16", "16000");
+        addCustomer("Loo", "jjwmm", "23", "23000");
+        addCustomer("Joo", "jjwmm", "15", "15000");
+        addCustomer("Boo", "jjwmm", "20", "20000");
+        addCustomer("Qoo", "jjwmm", "12", "12000");
     }
 
 
@@ -75,44 +75,63 @@ public class Customers {
                 break;
             }
         }
-        System.out.println("Input number that you want to update");
-        System.out.println("1. Name   2. User ID   3. Purchase Count   4. Total Pay");
-        int attribute = scan.nextInt();
+        if (index >= 0) {
+            System.out.println("Input number that you want to update");
+            System.out.println("1. Name   2. User ID   3. Purchase Count   4. Total Pay");
+            int attribute = scan.nextInt();
 
-        switch (attribute) {
-            case 1:
-                System.out.println("Input Name");
-                String name = scan.next();
-                try {
-                    customers[index].setName(name);
-                } catch (InputEmptyException e) {
-                    System.out.println(e.getMessage());
-                } catch (InputFormatException e) {
-                    System.out.println(e.getMessage());
+            if (attribute >= 1 && attribute <= 4) {
+                switch (attribute) {
+                    case 1:
+                        System.out.println("Input Name");
+                        String name = scan.next();
+                        try {
+                            customers[index].setName(name);
+                        } catch (InputEmptyException e) {
+                            System.out.println(e.getMessage());
+                        } catch (InputFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+
+                    case 2:
+                        System.out.println("Input User ID");
+                        String userID = scan.next();
+                        try {
+                            customers[index].setUserID(userID);
+                        } catch (InputEmptyException e) {
+                            System.out.println(e.getMessage());
+                        } catch (InputFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+
+                    case 3:
+                        System.out.println("Input Purchase Count");
+                        String purchaseCount = scan.next();
+                        try {
+                            customers[index].setPurchaseCount(purchaseCount);
+                        } catch (InputFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        customers[index].getGroup();
+                        break;
+
+                    case 4:
+                        System.out.println("Input Total Pay");
+                        String totalPay = scan.next();
+                        try {
+                            customers[index].setTotalPay(totalPay);
+                        } catch (InputFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        customers[index].getGroup();
+                        break;
                 }
-                break;
-
-            case 2:
-                System.out.println("Input User ID");
-                String userID = scan.next();
-                customers[index].setUserID(userID);
-                break;
-
-            case 3:
-                System.out.println("Input Purchase Count");
-                int purchaseCount = scan.nextInt();
-                customers[index].setPurchaseCount(purchaseCount);
-                customers[index].getGroup();
-                break;
-
-            case 4:
-                System.out.println("Input Total Pay");
-                int totalPay = scan.nextInt();
-                customers[index].setTotalPay(totalPay);
-                customers[index].getGroup();
-                break;
-
-        }
+            } else
+                System.out.println("Wrong Number");
+        } else
+            System.out.println("Wrong Serial Number Cannot found customer");
     }
 
     public void deleteCustomer(String delSerialNum) {
@@ -124,7 +143,7 @@ public class Customers {
             }
         }
 
-        if (index >= 0 && index < customerCount) {
+        if (index >= 0) {
             Customer[] newCustomers = new Customer[--customerCount];
             for (int i = 0, j = 0; i < customerCount + 1; i++) {
                 if (i != index) {
@@ -134,7 +153,7 @@ public class Customers {
             }
             customers = newCustomers;
         }
-        System.out.println();
+        System.out.println("Wrong Serial Number Cannot found customer");
     }
 
 
